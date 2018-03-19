@@ -1,0 +1,33 @@
+#include <iostream>
+#include <vector>
+#include <map>
+using namespace std;
+const long long modif=1000003;
+vector <int> vl[100010];
+vector <int> vr[100010];
+int main(){
+	int n,m,k,l,r,z;
+	
+	cin>>n>>m>>k;
+	for(int i=1;i<=n;++i){
+		cin>>l>>r>>z;
+		vl[l].push_back(z);
+		vr[r].push_back(z);
+	}
+	map<int,int>matriz;
+	long long respuesta=1;
+	for(int i=1;i<=m;++i){
+		for(int j=0;j<vl[i].size();++j){
+			matriz[vl[i][j]]++;
+		}
+		respuesta=(respuesta*1LL*(k-(int)matriz.size()))%modif;
+		for(int j=0;j<vr[i].size();++j){
+			matriz[vr[i][j]]--;
+			if(matriz[vr[i][j]]==0){
+				matriz.erase(vr[i][j]);
+			}
+		}
+	}
+	cout<<respuesta<<endl;
+	return 0;
+}
