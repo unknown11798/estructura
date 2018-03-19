@@ -1,0 +1,23 @@
+package asda;
+import java.util.*;
+public class exercise {
+    public static void main(String[]args){
+        Scanner read=new Scanner(System.in);
+        int longitud1,longitud2,respuesta;
+        int[] vector=new int[100000];
+        longitud1=read.nextInt();
+        longitud2=read.nextInt();
+        for(int i=0;i<longitud1;i++){
+            vector[i]=read.nextInt();
+        }
+        for(int i=0;i<(longitud1-longitud2+1);i++){
+            respuesta=vector[i];
+            for(int j=i;j<(i+longitud2);j++){
+                if(vector[j]>respuesta){
+                    respuesta=vector[j];
+                }
+            }
+            System.out.print(respuesta+" ");
+        }
+    }
+}
