@@ -1,0 +1,23 @@
+PrintPre(nodo x){
+  if(x!=null){
+    System.out.println(x.toString);
+    PrintPre(x.left);
+    PrintPre(x.right);
+  }
+}
+PrintIn(nodo x){
+  if(x!=null){
+    PrintIn(x.left);
+    System.out.println(x.toString);
+    PrintIn(x.right);
+  }
+}
+PrintPos(nodo x){
+  if(x!=null){
+    PrintPos(x.left);
+    PrintPos(x.right);
+    System.out.println(x.toString);
+  }
+}
+//Rotación: Técnica para balancear árboles
+//Rotación + simple: Todos en una misma línea
