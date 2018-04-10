@@ -21,3 +21,4 @@ PrintPos(nodo x){
 }
 //Rotación: Técnica para balancear árboles
 //Rotación + simple: Todos en una misma línea
+//Conteo de cargas!!! (para casos mayores )
