@@ -110,6 +110,15 @@ public class Tree {
                             parent.right=temp.left;
                     }
                     temp=null;
+                }else{
+                    Node temp2=temp.right;
+                    if(temp2.left==null){
+                        temp2.left=temp.left;
+                        if(value<parent.value)
+                            parent.left=temp2;
+                        else
+                            parent.right=temp2;
+                    }
                 }
             }
         }
