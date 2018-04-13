@@ -1,0 +1,138 @@
+public class Node {
+    int value;
+    Node left;
+    Node right;
+    public Node(int value){
+        this.value=value;
+    }
+}
+public class Tree {
+    Node root=null;
+    public boolean isEmpty(){
+        return root==null;
+    }
+    public void insert(int value){
+        if(isEmpty()){
+            Node newNode=new Node (value);
+            root=newNode;
+        }else{
+            Node temp=root;
+            Node parent=root;
+            while(temp!=null){
+                parent=temp;
+                if(value<temp.value){
+                    temp=temp.left;
+                }else{
+                    temp=temp.right;
+                }
+            }
+            Node newNode=new Node(value);
+            if(value<parent.value)
+                parent.left=newNode;
+            else
+                parent.right=newNode;
+        }
+    }
+    public void preorden(Node n){
+        if(n!=null){
+            System.out.print(n.value+" ");
+            preorden(n.left);
+            preorden(n.right);
+        }
+    }
+    public void postorden(Node n){
+        if(n!=null){
+            postorden(n.left);
+            postorden(n.right);
+            System.out.print(n.value+" ");
+        }
+    }
+    public void inorden(Node n){
+        if(n!=null){
+            inorden(n.left);
+            System.out.print(n.value+" ");
+            
+            inorden(n.right);
+        }
+    }
+    public Node search(int value){
+        Node temp=root;
+        while(temp!=null){
+            if(temp.value==value){
+                break;
+            }else if(value<temp.value){
+                temp=temp.left;
+            }else{
+                temp=temp.right;
+            }
+        }
+        return temp;
+    }
+    public boolean isLeaf(Node n){
+        return (n.left==null&&n.right==null);
+    }
+    public void delete(int value){
+        Node temp=root;
+        Node parent=root;
+        while(temp!=null){
+            if(temp.value==value){
+                break;
+            }else{
+                parent=temp;
+                if(value<temp.value){
+                    temp=temp.left;
+                }else{
+                    temp=temp.right;
+            }
+        }
+        }
+        if(temp==null){
+            System.out.println("No existe");
+        }else{
+            
+            if(isLeaf(temp)){
+                temp=null;
+                if(value<parent.value)
+                    parent.left=null;
+                else
+                    parent.right=null;
+            }else{
+                if(oneChild(temp)){
+                    if(temp.left!=null){
+                        if(value<parent.value)
+                            parent.left=temp.left;
+                        else
+                            parent.right=temp.right;
+                    }else{
+                        if(value<parent.value)
+                            parent.left=temp.right;
+                        else
+                            parent.right=temp.left;
+                    }
+                    temp=null;
+                }
+            }
+        }
+    }
+    public boolean oneChild(Node n){
+        return(n.left!=null&&n.right!=null);
+    }
+    public static void main(String[] args) {
+        Tree alfa=new Tree();
+        alfa.insert(2);
+        alfa.insert(7);
+        alfa.insert(4);
+        alfa.insert(3);
+        alfa.insert(1);
+        alfa.insert(12);
+        alfa.insert(8);
+        alfa.insert(9);
+        alfa.insert(5);
+        System.out.println("\nPreorden");
+        alfa.preorden(alfa.root);
+        System.out.println("\nPostorden");
+        alfa.postorden(alfa.root);
+        System.out.println("\nInorden");
+        alfa.inorden(alfa.root);
+    }    
+}
