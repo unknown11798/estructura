@@ -123,8 +123,51 @@ public class Tree {
             }
         }
     }
+    public int height(Node n){
+        if(isLeaf(n)&&n==null){
+            return 0;
+        }else{
+            return height(n.left)>height(n.right)?height(n.left)+1:height(n.right)+1;
+        }
+    }
+    public int factor(Node n){
+        return height(n.left)-height(n.right);
+    }
     public boolean oneChild(Node n){
         return(n.left!=null&&n.right!=null);
+    }
+    public Node fathr(Node n){
+        if(n==root){
+            return root;
+        }else{
+            Node temp=root;
+            Node parnt=null;
+            while(temp!=null){
+                if(n.value==temp.value){
+                    break;
+                }else{
+                    parnt=temp;
+                    if(n.value<temp.value){
+                        temp=temp.left;
+                    }else{
+                        temp=temp.right;
+                    }
+                }
+            }return parnt;
+        }
+        
+    }
+    public void rotLeft1(){
+        
+    }
+    public void rotLeft2(){
+        
+    }
+    public void rotRight1(){
+        
+    }
+    public void rotRight1(){
+        
     }
     public static void main(String[] args) {
         Tree alfa=new Tree();
